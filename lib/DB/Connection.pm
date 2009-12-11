@@ -7,36 +7,43 @@ use DB::CouchDB;
 
 use Exception::Class ( 'CouchDBError', );
 
-role DB::Connection {
+role DB::Connection (Str :$name, Str :$connection_type, HashRef|ArrayRef|RegexpRef :$connection_delegation)  {
+
     use version; our $VERSION = qv('0.0.1');
 
-    requires '_build__connection';
-
-    has 'host' => (
+    has "host_${name}" => (
         is       => 'ro',
         isa      => 'Str',
         required => 1,
     );
-    has 'port' => (
+    has "port_${name}" => (
         is       => 'ro',
         isa      => 'Int',
         required => 1,
     );
-    has 'dbname' => (
+    has "dbname_${name}" => (
         is       => 'ro',
         isa      => 'Str',
         required => 1,
     );
-    has 'username' => (
+    has "username_${name}" => (
         is       => 'ro',
         isa      => 'Str',
         required => 1,
     );
-    has 'password' => (
+    has "password_${name}" => (
         is       => 'ro',
         isa      => 'Str',
         required => 1,
     );
+    has "_connection_${name}" => (
+        is         => 'ro',
+        isa        => $connection_type,
+        lazy_build => 1,
+        handles    => $connection_delegation,
+    );
+
+    requires "_build__connection_${name}";
 
 }
 
