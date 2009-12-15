@@ -3,10 +3,6 @@ use warnings;
 
 use MooseX::Declare;
 
-use DB::CouchDB;
-
-use Exception::Class ( 'CouchDBError', );
-
 role DB::Connection (Str :$name, Str :$connection_type, HashRef|ArrayRef|RegexpRef :$connection_delegation)  {
 
     use version; our $VERSION = qv('0.0.1');
