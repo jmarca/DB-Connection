@@ -12,7 +12,7 @@ WriteMakefile(
         'Test::More' => 0,
         'version'    => 0,
         'MooseX::Declare' => 0,
-        'Test::PerlCritic' => 0,
+        'Test::Perl::Critic' => 0,
 
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
