@@ -1,5 +1,6 @@
 use MooseX::Declare;
 class ConnectableThing {
+  use DB::CouchDB;
  method _build__connection_couchdb (Any $ladeeda) {
    # dummy method does nothing.  Needs to be put in *before* the with statement
    return;
