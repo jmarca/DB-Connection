@@ -55,7 +55,6 @@ role {
     has "password_${name}" => (
         is       => 'ro',
         isa      => 'Str',
-        required => 1,
     );
     has "_connection_${name}" => (
         is         => 'ro',
