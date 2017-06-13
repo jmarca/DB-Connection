@@ -5,7 +5,36 @@ approach to having db connections.  I use it to give a class a
 connection to CouchDB and to PostgreSQL, because these things have so
 much in common but also their own quirks.
 
+# Installation
+
+Installation uses Dist::Zilla
+
+```
+dzil authordeps --missing | cpanm --sudo
+dzil listdeps --missing
+```
+
+One of the dependencies of this (only used for the tests, by the way)
+is my CouchDB package, which has to be downloaded from github and
+installed independently of CPAN.  Get it
+from [https://github.com/jmarca/db-couchdb-schema.git](https://github.com/jmarca/db-couchdb-schema.git).
+
+After the dependencies and my CouchDB package are installed, you can
+build, test, and install this package
+
+```
+dzil build
+dzil test
+dzil install --install-command 'cpanm --sudo .'
+```
+
+Don't forget the "." in the cpanm command in the above line.
+
+
 # Usage
+
+This is a role that is used in some of my database access code.  It
+abstracts some of the aspects of accessing a database.
 
 There are three parameters for this role:
 
@@ -64,7 +93,7 @@ role Spatialvds::CopyIn {
 
 ## A connection to CouchDB
 
-This is another example, using an ancient CPAN couchdb package.
+This is another example, using my couchdb package.
 
 ```perl
 
